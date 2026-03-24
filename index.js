@@ -1,7 +1,8 @@
 import express from "express";
+import "dotenv/config";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(express.json());
 
 let teaData = [];
@@ -32,7 +33,7 @@ app.get("/teas/:id", (req, res) => {
 //update tea
 
 app.put("/teas/:id", (req, res) => {
-  const tea = teaData.find(t => t.id === parseInt(req.params.id));
+  const tea = teaData.find((t) => t.id === parseInt(req.params.id));
   if (!tea) {
     return res.status(404).send("Tea not found");
   }
